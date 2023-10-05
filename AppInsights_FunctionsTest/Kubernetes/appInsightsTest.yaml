@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: appinsights-test-deployment
+  labels:
+    app: appinsights-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: appinsights-test
+  template:
+    metadata:
+      labels:
+        app: appinsights-test
+    spec:
+      containers:
+      - name: appinsightsfunctionstest
+        image: appinsightsfunctionstest.azurecr.io/appinsightsfunctionstest:latest
+        ports:
+        - containerPort: 80
+        env:
+        - name: ServiceBusConnectionString
+          valueFrom:
+            secretKeyRef:
+                name: servicebus-connection-string
+                key: ServiceBusConnectionString
+        - name: APPLICATIONINSIGHTS_CONNECTION_STRING
+          valueFrom:
+            secretKeyRef:
+                name: appinsights-connection-string
+                key: APPLICATIONINSIGHTS_CONNECTION_STRING
+        - name: StorageQueueConnectionString
+          valueFrom:
+            secretKeyRef:
+                name: storage-queue-connection-string
+                key: StorageQueueConnectionString
+

@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "AppInsights_FunctionsTest": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7273"
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "httpPort": 34883,
+      "useSSL": false
+    }
+  }
+}
