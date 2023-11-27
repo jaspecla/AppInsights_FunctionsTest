@@ -15,7 +15,7 @@ namespace AppInsights_FunctionsTest
     }
 
     [Function(nameof(StorageQueueTest))]
-    public void Run([QueueTrigger("mystgqueue", Connection = "StorageQueueConnectionString")] QueueMessage message)
+    public void Run([QueueTrigger("aksteststgqueue", Connection = "StorageQueueConnectionString")] QueueMessage message)
     {
       _logger.LogInformation("STG: Message ID: {id}", message.MessageId);
       _logger.LogInformation("STG: Message Body: {body}", message.Body);
